@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Star Discovery</title>
+  <style>
+    :root {
+      --main-bg: #b699e7;
+      --card-bg: #26258a;
+      --nav-bg: #22225c;
+      --nav-btn: #6d78d6;
+      --nav-btn-hover: #45389a;
+      --soft-shadow: 0 3px 14px #211e410c;
+      --radius: 18px;
+      --clr-white: #fff;
+      --heading: #e2daee;
+    }
+    body {
+      background: var(--main-bg);
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: var(--clr-white);
+    }
+    nav {
+      background: var(--nav-bg);
+      padding: 10px 20px;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      border-bottom-left-radius: var(--radius);
+      border-bottom-right-radius: var(--radius);
+      box-shadow: var(--soft-shadow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav button {
+      background: var(--nav-btn);
+      color: var(--clr-white);
+      border: none;
+      border-radius: 14px;
+      font-size: 1rem;
+      padding: 7px 16px;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    nav button:hover {
+      background: var(--nav-btn-hover);
+    }
+    .section {
+      display: none;
+      max-width: 650px;
+      margin: 32px auto;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--soft-shadow);
+      padding: 24px 16px;
+      text-align: center;
+      animation: fadeIn .5s;
+    }
+    .active {
+      display: block;
+    }
+    .big-image {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 13px #0005;
+      margin-bottom: 16px;
+      max-height: 250px;
+      object-fit: cover;
+    }
+    .button-row {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      margin: 18px 0;
+    }
+    .option-btn {
+      background: var(--nav-btn);
+      color: var(--clr-white);
+      border: none;
+      border-radius: 40px;
+      font-size: 1.2rem;
+      padding: 16px 36px;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #0002;
+      font-weight: 600;
+      transition: background .2s, scale .15s;
+    }
+    .option-btn:hover {
+      background: var(--nav-btn-hover);
+      scale: 1.08;
+    }
+    .info-img {
+      width: 95%;
+      max-width: 480px;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 11px #2221;
+    }
+    .constellation-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+      margin: 30px auto;
+    }
+    .constellation-gallery img {
+      width: 128px;
+      height: 128px;
+      object-fit: contain;
+      border-radius: 10px;
+      box-shadow: 0 2px 9px #0003;
+      background: #151936;
+    }
+    .about-content {
+      background: #252164;
+      color: var(--heading);
+      margin: 18px auto 0 auto;
+      padding: 16px 14px;
+      border-radius: 14px;
+      max-width: 480px;
+      font-size: 1.08rem;
+      line-height: 1.7;
+    }
+    .zodiac-info {
+      text-align: left;
+      margin: 0 auto 14px auto;
+      max-width: 510px;
+      padding: 12px 15px;
+      border-radius: 10px;
+      background: #302b73;
+      font-size: .97rem;
+      color: #f5eaff;
+    }
+    @media (max-width: 900px) {
+      .section { max-width: 96vw; padding: 12px 2vw; }
+      .constellation-gallery img { width: 28vw; height: 28vw; }
+      .info-img { max-width: 99vw; }
+      .zodiac-info { max-width: 97vw; font-size: .91rem; }
+    }
+    @media (max-width: 600px) {
+      .button-row { flex-direction: column; gap: 16px; }
+      .option-btn { width: 97vw; font-size: 1.05rem; padding: 10px 0; }
+      .constellation-gallery { gap: 7px; }
+    }
+    @keyframes fadeIn { from { opacity: 0;} to { opacity: 1;} }
+  </style>
+</head>
+<body>
+  <nav>
+    <button onclick="showSection('landing')">Home</button>
+    <button onclick="showSection('about')">About</button>
+    <button onclick="previousSection()">Previous</button>
+  </nav>
+
+  <div id="landing" class="section active">
+    <img src="Screenshot-2025-10-24-101823.jpg" alt="Star Discovery Landing" class="big-image">
+    <h2 style="color:var(--heading);">Constellation Discovery</h2>
+    <p>Explore the wonders of the night sky!</p>
+    <button class="option-btn" onclick="proceedDiscovery()">Proceed</button>
+  </div>
+
+  <div id="proceed" class="section">
+    <img src="Screenshot-2025-10-24-101857.jpg" alt="Constellation Intro" class="big-image">
+    <h2>Knowing the depths of Stars</h2>
+    <p>Click an option below to explore:</p>
+    <div class="button-row">
+      <button class="option-btn" onclick="showSection('zodiac')">Zodiacs</button>
+      <button class="option-btn" onclick="showSection('constellations')">Other Constellations</button>
+    </div>
+  </div>
+
+  <div id="zodiac" class="section">
+    <!-- Zodiac Overview Screenshot -->
+    <img src="Screenshot-2025-10-24-101841.jpg" alt="Zodiac Signs" class="info-img">
+    <!-- Zodiac Grid from screenshot you uploaded -->
+    <img src="Screenshot-2025-10-24-182144.jpg" alt="Zodiac Grid" class="info-img">
+    <div class="zodiac-info">
+      <b>Fire signs:</b><br>
+      Aries (Mar 21 – Apr 19), Leo (Jul 23 – Aug 22), Sagittarius (Nov 23 – Dec 17)<br><br>
+      <b>Air signs:</b><br>
+      Aquarius (Jan 20 – Feb 18), Gemini (May 21 – Jun 20), Libra (Sep 23 – Oct 23)<br><br>
+      <b>Earth signs:</b><br>
+      Capricorn (Dec 17 – Jan 19), Taurus (Apr 20 – May 20), Virgo (Aug 23 – Sep 22)<br><br>
+      <b>Water signs:</b><br>
+      Cancer (Jun 21 – Jul 31), Scorpio (Oct 24 – Nov 21), Pisces (Feb 19 – Mar 20)<br>
+      <br>
+      <!-- Add other zodiac info or text as needed -->
+    </div>
+  </div>
+
+  <div id="constellations" class="section">
+    <h2>Other Constellations</h2>
+    <div class="constellation-gallery">
+      <!-- Sample images for other constellations, customize filenames/alts as needed -->
+      <img src="Screenshot-2025-10-21 182117.jpg" alt="Taurus">
+      <img src="Screenshot-2025-10-21 190255.jpg" alt="Aquila">
+      <img src="Screenshot-2025-10-21 190319.jpg" alt="Aquila 2">
+      <img src="Screenshot-2025-10-21 191234.jpg" alt="Grus & Hercules">
+      <img src="Screenshot-2025-10-21 191832.jpg" alt="Constellation Group">
+      <img src="Screenshot-2025-10-21 191058.jpg" alt="Fornax & Eridanus">
+      <img src="Screenshot-2025-10-21 192013.jpg" alt="Sagitta">
+      <img src="Screenshot-2025-10-21 191406.jpg" alt="Serpens">
+      <img src="Screenshot-2025-10-21 191655.jpg" alt="Lynx">
+      <img src="Screenshot-2025-10-21 191755.jpg" alt="Microscopium Monocerus">
+      <img src="Screenshot-2025-10-21 191823.jpg" alt="Norma & Octans">
+      <img src="Screenshot-2025-10-21 192052.jpg" alt="Sculptor & Scutum">
+      <img src="Screenshot-2025-10-21 190906.jpg" alt="Other Constellations">
+      <!-- Add all constellation images that are not part of zodiac here -->
+    </div>
+  </div>
+
+  <div id="about" class="section">
+    <img src="image.jpg" alt="About Constellations" class="info-img">
+    <h2>About Constellations</h2>
+    <div class="about-content">
+      It was during ancient times that constellations were first discovered, and early astronomers and cultures employed the night sky for navigating, keeping time, and developing mythologies. Early cultures such as the Sumerians, Egyptians, Greeks, and Chinese saw patterns of stars and organized them into constellations, most of which were often linked to legends or gods. It was the Greeks, spearheaded by those like Hipparchus and Ptolemy, who formalized many of the constellations that exist today. During centuries, technological improvements, including telescopes, made mapping the sky more accurately, which resulted in the discovery of new constellations, particularly in the Southern Hemisphere. Currently, 88 constellations are officially recognized by the International Astronomical Union, each defining a unique region of the night sky.
+    </div>
+  </div>
+
+  <script>
+    const order = ['landing','proceed','zodiac','constellations','about'];
+    let currentIdx = 0;
+    function showSection(id) {
+      order.forEach(s => document.getElementById(s).classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      currentIdx = order.indexOf(id);
+    }
+    function proceedDiscovery() {
+      showSection('proceed');
+    }
+    function previousSection() {
+      let idx = currentIdx - 1;
+      if (idx < 0) idx = 0;
+      showSection(order[idx]);
+    }
+  </script>
+</body>
+</html>
